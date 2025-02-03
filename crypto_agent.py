@@ -65,37 +65,60 @@ def merge_market_stats(gecko, extra):
 
 def create_bullet_list(text):
     # Split on periods not part of a decimal number.
-    import re
     sentences = re.split(r'(?<!\d)\.(?!\d)', text)
     items = [sentence.strip() for sentence in sentences if sentence.strip()]
     # Append period at end of each sentence.
     return "<ul class='custom-bullets'>" + "".join(f"<li>{item}.</li>" for item in items) + "</ul>"
 
+def extract_signal(rec):
+    # Extract all trading signals and return the most frequently mentioned one.
+    from collections import Counter
+    matches = re.findall(r'\b(buy|sell|hold)\b', rec, re.IGNORECASE)
+    if matches:
+        counts = Counter(match.lower() for match in matches)
+        return counts.most_common(1)[0][0]
+    return None
+
 def format_recommendation(rec):
-    # Style the recommendation as a signal: large text and colored based on its value
-    r = rec.strip().lower()
-    if "buy" in r:
+    signal = extract_signal(rec)
+    if signal == "buy":
         color = "green"
-    elif "sell" in r:
+    elif signal == "sell":
         color = "red"
-    elif "hold" in r:
+    elif signal == "hold":
         color = "gray"
     else:
         color = "black"
     return f"<div style='font-size:2em; font-weight:bold; color:{color};'>{rec}</div>"
 
 def format_recommendation_inline(rec):
-    # Style the recommendation as a signal inline with the heading
-    r = rec.strip().lower()
-    if "buy" in r:
+    signal = extract_signal(rec)
+    if signal == "buy":
         color = "green"
-    elif "sell" in r:
+    elif signal == "sell":
         color = "red"
-    elif "hold" in r:
+    elif signal == "hold":
         color = "gray"
     else:
         color = "black"
     return f"<span style='font-size:1.5em; font-weight:bold; color:{color}; margin-left:10px;'>{rec}</span>"
+
+def get_technical_signal(extra_data):
+    # Use D1 timeframe indicator; for example, using the daily RSI ("rsi_d1")
+    rsi = extra_data.get("rsi_d1")
+    if rsi is not None:
+        try:
+            rsi = float(rsi)
+            if rsi < 30:
+                return "buy"
+            elif rsi > 70:
+                return "sell"
+            else:
+                return "hold"
+        except Exception:
+            pass
+    # Fallback signal if no D1 indicator available.
+    return "hold"
 
 # --- Main Application ---
 def main():
@@ -181,6 +204,8 @@ def main():
     market = coin_info.get("market_data", {})
     extra_data = pull_extra_data(coin_id)
     stats = merge_market_stats(market, extra_data)
+    # Compute technical signal based on extra_data indicators.
+    tech_signal = get_technical_signal(extra_data)
     
     # Process timestamp info
     last_updated_raw = coin_info.get("last_updated", "")
@@ -225,7 +250,7 @@ def main():
 
     with st.expander("AI Analysis Report 🤖", expanded=True):
         # Combine heading and inline recommendation signal in one line using HTML
-        st.markdown(f"<h3 style='display:inline'>Recommendation 💡</h3>{format_recommendation_inline(rec)}", unsafe_allow_html=True)
+        st.markdown(f"<h3 style='display:inline'>Technical Signal 💻</h3>{format_recommendation_inline(tech_signal)}", unsafe_allow_html=True)
         st.markdown("### Rationale 📜")
         st.markdown(create_bullet_list(rationale), unsafe_allow_html=True)
         st.markdown("### Key Factors 🧩")
