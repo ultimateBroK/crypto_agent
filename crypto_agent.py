@@ -63,11 +63,85 @@ def merge_market_stats(gecko, extra):
         "buzz": extra.get("social_buzz", "No buzz")
     }
 
+def create_bullet_list(text):
+    # Split on periods not part of a decimal number.
+    import re
+    sentences = re.split(r'(?<!\d)\.(?!\d)', text)
+    items = [sentence.strip() for sentence in sentences if sentence.strip()]
+    # Append period at end of each sentence.
+    return "<ul class='custom-bullets'>" + "".join(f"<li>{item}.</li>" for item in items) + "</ul>"
+
+def format_recommendation(rec):
+    # Style the recommendation as a signal: large text and colored based on its value
+    r = rec.strip().lower()
+    if "buy" in r:
+        color = "green"
+    elif "sell" in r:
+        color = "red"
+    elif "hold" in r:
+        color = "gray"
+    else:
+        color = "black"
+    return f"<div style='font-size:2em; font-weight:bold; color:{color};'>{rec}</div>"
+
+def format_recommendation_inline(rec):
+    # Style the recommendation as a signal inline with the heading
+    r = rec.strip().lower()
+    if "buy" in r:
+        color = "green"
+    elif "sell" in r:
+        color = "red"
+    elif "hold" in r:
+        color = "gray"
+    else:
+        color = "black"
+    return f"<span style='font-size:1.5em; font-weight:bold; color:{color}; margin-left:10px;'>{rec}</span>"
+
 # --- Main Application ---
 def main():
     st.set_page_config(page_title="Crypto Reimagined", layout="centered")
-    st.title("Crypto Reimagined Dashboard")
-    st.markdown("A fresh perspective on your crypto analysis – powered by AI and consolidated market data.")
+    # Updated global CSS including styles for heading and content boxes
+    st.markdown("""
+    <style>
+    /* Reset default margins and paddings */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    /* Enforce a uniform font across all elements */
+    html, body, [class*="css"] {
+        font-family: 'Helvetica', sans-serif !important;
+    }
+    /* Custom heading box with transparent background */
+    .heading-box {
+        border: 1px solid #ddd;
+        padding: 8px;
+        margin-bottom: 10px;
+        background-color: transparent;
+        font-family: 'Helvetica', sans-serif;
+    }
+    /* Content box to control typography for section content */
+    .content-box {
+        border: 1px dashed #ddd;
+        padding: 8px;
+        margin-bottom: 10px;
+        background-color: transparent;
+        font-family: 'Helvetica', sans-serif;
+    }
+    ul.custom-bullets {
+        list-style: none;
+        padding-left: 0;
+    }
+    ul.custom-bullets li::before {
+        content: "🔹";
+        margin-right: 5px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+    
+    st.title("Crypto Reimagined Dashboard 🚀")
+    st.markdown("A fresh perspective on your crypto analysis – powered by AI and consolidated market data. 🌐")
 
     # Sidebar inputs
     st.sidebar.header("Configuration")
@@ -136,29 +210,32 @@ def main():
         return
 
     # New output style using expanders for each section
-    with st.expander("Market Summary", expanded=True):
-        st.write(f"**Coin:** {symbol}")
+    with st.expander("Market Summary 🪙", expanded=True):
+        # Replace individual st.write calls with a markdown bullet list using emoji
         price_display = f"${stats['price']:,.2f}" if stats['price'] >= 1 else f"${stats['price']:,.8f}"
-        st.write(f"**Price:** {price_display}")
-        st.write(f"**Volume (24h):** ${stats['volume']:,.0f}")
-        st.write(f"**Market Cap:** ${stats['cap']:,.0f}")
-        st.write(f"**Last Updated (UTC+7):** {update_time}")
-        st.write(f"**Mood:** {stats['mood']}")
-        st.write(f"**Social Buzz:** {stats['buzz']}")
+        st.markdown(f"""
+        - 🔹 **Coin:** {symbol}
+        - 🔹 **Price:** {price_display}
+        - 🔹 **Volume (24h):** ${stats['volume']:,.0f}
+        - 🔹 **Market Cap:** ${stats['cap']:,.0f}
+        - 🔹 **Last Updated (UTC+7):** {update_time}
+        - 🔹 **Mood:** {stats['mood']}
+        - 🔹 **Social Buzz:** {stats['buzz']}
+        """)
 
-    with st.expander("AI Analysis Report", expanded=True):
-        st.markdown("### Recommendation")
-        st.info(f"{rec}")
-        st.markdown("### Rationale")
-        st.write(rationale)
-        st.markdown("### Key Factors")
-        st.write(factors)
-        st.markdown("### 1-Week Outlook")
-        st.write(outlook)
-        st.markdown("### Price Targets")
-        st.write(targets)
+    with st.expander("AI Analysis Report 🤖", expanded=True):
+        # Combine heading and inline recommendation signal in one line using HTML
+        st.markdown(f"<h3 style='display:inline'>Recommendation 💡</h3>{format_recommendation_inline(rec)}", unsafe_allow_html=True)
+        st.markdown("### Rationale 📜")
+        st.markdown(create_bullet_list(rationale), unsafe_allow_html=True)
+        st.markdown("### Key Factors 🧩")
+        st.markdown(create_bullet_list(factors), unsafe_allow_html=True)
+        st.markdown("### 1-Week Outlook 🔮")
+        st.markdown(create_bullet_list(outlook), unsafe_allow_html=True)
+        st.markdown("### Price Targets 🎯")
+        st.markdown(create_bullet_list(targets), unsafe_allow_html=True)
 
-    st.success("Analysis complete! Review the sections above for full details.")
+    st.success("Analysis complete! Review the sections above for full details. ✅")
 
 if __name__ == "__main__":
     main()
