@@ -103,80 +103,22 @@ def format_recommendation_inline(rec):
         color = "black"
     return f"<span style='font-size:1.5em; font-weight:bold; color:{color}; margin-left:10px;'>{rec}</span>"
 
-def get_rsi_signal(extra_data, timeframe):
-    # Use RSI based on selected timeframe
-    rsi = extra_data.get(f"rsi_{timeframe}")
-    try:
-        rsi = float(rsi)
-        if rsi < 35:
-            return "buy"
-        elif rsi > 65:
-            return "sell"
-        else:
-            return "hold"
-    except Exception:
-        return "hold"
-
-def get_macd_signal(extra_data, timeframe):
-    # Use MACD based on selected timeframe
-    macd = extra_data.get(f"macd_{timeframe}")
-    try:
-        macd = float(macd)
-        if macd > 0:
-            return "buy"
-        elif macd < 0:
-            return "sell"
-        else:
-            return "hold"
-    except Exception:
-        return "hold"
-
-def get_stoch_signal(extra_data, timeframe):
-    # Use Stochastic based on selected timeframe
-    stoch = extra_data.get(f"stoch_{timeframe}")
-    try:
-        stoch = float(stoch)
-        if stoch < 20:
-            return "buy"
-        elif stoch > 80:
-            return "sell"
-        else:
-            return "hold"
-    except Exception:
-        return "hold"
-
-def get_technical_signal(extra_data, timeframe):
-    # Get signals for selected timeframe
-    rsi_sig = get_rsi_signal(extra_data, timeframe)
-    macd_sig = get_macd_signal(extra_data, timeframe)
-    stoch_sig = get_stoch_signal(extra_data, timeframe)
-    
-    # Use existing weighted scoring system
-    weights = {"rsi": 0.4, "macd": 0.3, "stoch": 0.3}
-    score = {
-        "buy": weights["rsi"] * (rsi_sig == "buy") + 
-               weights["macd"] * (macd_sig == "buy") + 
-               weights["stoch"] * (stoch_sig == "buy"),
-        "sell": weights["rsi"] * (rsi_sig == "sell") + 
-                weights["macd"] * (macd_sig == "sell") + 
-                weights["stoch"] * (stoch_sig == "sell"),
-        "hold": weights["rsi"] * (rsi_sig == "hold") + 
-                weights["macd"] * (macd_sig == "hold") + 
-                weights["stoch"] * (stoch_sig == "hold")
-    }
-    return max(score, key=score.get)
-
-def format_signal(signal):
-    sig = signal.lower()
-    if sig == "buy":
-        color = "green"
-    elif sig == "sell":
-        color = "red"
-    elif sig == "hold":
-        color = "gray"
-    else:
-        color = "black"
-    return f"<span style='color:{color}; font-weight:bold;'>{signal.upper()}</span>"
+def get_technical_signal(extra_data):
+    # Use D1 timeframe indicator; for example, using the daily RSI ("rsi_d1")
+    rsi = extra_data.get("rsi_d1")
+    if rsi is not None:
+        try:
+            rsi = float(rsi)
+            if rsi < 30:
+                return "buy"
+            elif rsi > 70:
+                return "sell"
+            else:
+                return "hold"
+        except Exception:
+            pass
+    # Fallback signal if no D1 indicator available.
+    return "hold"
 
 # --- Main Application ---
 def main():
@@ -228,11 +170,6 @@ def main():
     st.sidebar.header("Configuration")
     api_key = st.sidebar.text_input("Google API Key 🔑", type="password")
     coin_query = st.sidebar.text_input("Crypto Symbol/Name", value="BTC").strip().upper()
-    timeframe = st.sidebar.selectbox(
-        "Select Timeframe",
-        ["5m", "15m", "1h", "4h", "1d", "1w"],
-        index=4  # Default to 1d
-    )
     
     if not (api_key and coin_query):
         st.info("Enter API key and coin name/symbol in the sidebar to start.")
@@ -267,8 +204,8 @@ def main():
     market = coin_info.get("market_data", {})
     extra_data = pull_extra_data(coin_id)
     stats = merge_market_stats(market, extra_data)
-    # Compute technical signal based on selected timeframe
-    tech_signal = get_technical_signal(extra_data, timeframe)
+    # Compute technical signal based on extra_data indicators.
+    tech_signal = get_technical_signal(extra_data)
     
     # Process timestamp info
     last_updated_raw = coin_info.get("last_updated", "")
@@ -302,18 +239,18 @@ def main():
         # Replace individual st.write calls with a markdown bullet list using emoji
         price_display = f"${stats['price']:,.2f}" if stats['price'] >= 1 else f"${stats['price']:,.8f}"
         st.markdown(f"""
-        - **Coin:** {symbol}
-        - **Price:** {price_display}
-        - **Volume (24h):** ${stats['volume']:,.0f}
-        - **Market Cap:** ${stats['cap']:,.0f}
-        - **Last Updated (UTC+7):** {update_time}
-        - **Mood:** {stats['mood']}
-        - **Social Buzz:** {stats['buzz']}
+        - 🔹 **Coin:** {symbol}
+        - 🔹 **Price:** {price_display}
+        - 🔹 **Volume (24h):** ${stats['volume']:,.0f}
+        - 🔹 **Market Cap:** ${stats['cap']:,.0f}
+        - 🔹 **Last Updated (UTC+7):** {update_time}
+        - 🔹 **Mood:** {stats['mood']}
+        - 🔹 **Social Buzz:** {stats['buzz']}
         """)
 
     with st.expander("AI Analysis Report 🤖", expanded=True):
-        # Show technical signal using the new format_signal() helper.
-        st.markdown(f"### Technical Signal 💻 - {format_signal(tech_signal)}", unsafe_allow_html=True)
+        # Combine heading and inline recommendation signal in one line using HTML
+        st.markdown(f"<h3 style='display:inline'>Technical Signal 💻</h3>{format_recommendation_inline(tech_signal)}", unsafe_allow_html=True)
         st.markdown("### Rationale 📜")
         st.markdown(create_bullet_list(rationale), unsafe_allow_html=True)
         st.markdown("### Key Factors 🧩")
