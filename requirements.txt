@@ -1,0 +1,7 @@
+streamlit           
+agno                
+google-cloud-core
+google-generativeai 
+ccxt                
+python-dateutil
+pycoingecko
