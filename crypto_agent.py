@@ -37,8 +37,6 @@ if google_api_key:
         st.error(f"Error initializing AI agent: {e}")
         st.stop()
 
-    # Removed CoinMarketCap API key input and validation
-
     # Prompt user for cryptocurrency name or symbol
     crypto_input = st.text_input("Enter the crypto name or symbol (e.g., Bitcoin or BTC) 💰").strip()
     if crypto_input:
