@@ -424,8 +424,8 @@ def setup_ai_agent(api_key: str) -> Agent:
     """Set up and return an AI agent with proper error handling and fallbacks."""
     # List of model IDs to try in order of preference
     model_ids = [
-        "gemini-2.0-flash",
-        "gemini-2.0-pro"
+        "gemini-2.0-pro-exp-02-05",
+        "gemini-2.0-flash-thinking-exp-01-21"
     ]
     
     last_error = None
