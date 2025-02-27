@@ -19,7 +19,7 @@ An advanced cryptocurrency analysis platform combining real-time market data fro
 
 ## 🖼️ Screenshots
 
-![Dashboard Preview](https://via.placeholder.com/800x450?text=Crypto+Analysis+Pro+Dashboard)
+Will update soon!
 
 ## 🚀 Getting Started
 
@@ -60,7 +60,7 @@ An advanced cryptocurrency analysis platform combining real-time market data fro
 
 This application requires a Google API key to access Gemini AI models:
 
-1. Visit [Google AI Studio](https://makersuite.google.com/app/apikey)
+1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
 2. Create or use an existing Google Cloud project
 3. Generate an API key
 4. Enter the key in the dashboard sidebar when prompted
