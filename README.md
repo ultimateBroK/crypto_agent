@@ -1,38 +1,57 @@
-# Escape the Matrix Agent: Crypto Analysis & AI Investment
+# Crypto Reimagined Dashboard
 
-This Streamlit app leverages an AI-powered agent based on the Google Gemini model to analyze cryptocurrencies. Receive clear recommendations and insights using real-time market data from CoinGecko and advanced analysis techniques.
+This Streamlit application provides AI-powered cryptocurrency analysis using real-time market data from Coinpaprika and Google's Gemini AI models. Get instant insights, technical signals, and investment recommendations in an intuitive interface.
 
 ## Features
-- **AI-Powered Analysis:** Utilize the Google Gemini model for decisive buy/hold/sell recommendations.
-- **Real-Time Market Data:** Fetch current prices, 24h volume, market cap, and last updated timestamps from the CoinGecko API.
-- **Detailed Insights:** Get technical analysis, fundamental factors, short-term outlook (1-week) and support/resistance levels.
-- **Streamlit Interface:** Interactive UI for easy input of your Google API key and crypto symbol/name.
 
-## How to Get Started
+- **Real-Time Market Data:** Access up-to-date cryptocurrency prices, volumes, market cap, and trends from Coinpaprika API
+- **AI-Powered Analysis:** Leverage Google Gemini models to generate comprehensive investment recommendations
+- **Technical Indicators:** View technical signals including RSI-based buy/sell/hold recommendations
+- **Sentiment Analysis:** Track market mood (Bullish/Neutral/Bearish) and social buzz metrics
+- **Detailed Insights:** Get rationale, key factors, short-term outlook, and price targets for each cryptocurrency
+- **Visual Representations:** See price targets and support levels in easy-to-understand formats
+- **Enhanced UI:** Intuitive interface with expandable sections, card-based layouts, and visual indicators
+
+## Getting Started
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/yourusername/Crypto_agent.git
-   cd Crypto_agent
+   git clone https://github.com/yourusername/crypto_agent.git
+   cd crypto_agent
    ```
+
 2. **Install Dependencies:**
    ```bash
    pip install -r requirements.txt
    ```
+
 3. **Run the App:**
    ```bash
    streamlit run crypto_agent.py
    ```
 
-4. **Usage:**
-   - Enter your Google API key.
-   - Input the cryptocurrency name or symbol (e.g., Bitcoin or BTC).
-   - View real-time market stats and a concise AI-generated recommendation.
+4. **Required API Keys:**
+   - Get a Google AI Studio API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+   - No API key is required for Coinpaprika's public endpoints
+
+## Usage
+
+1. Enter your Google API key in the sidebar
+2. Input the cryptocurrency symbol or name you want to analyze (e.g., BTC, Ethereum)
+3. View the comprehensive market summary with current data
+4. Review the AI-generated analysis including:
+   - Technical signal (buy/sell/hold)
+   - Investment recommendation with rationale
+   - Key market factors
+   - 1-week market outlook
+   - Price targets and support levels
 
 ## Notes
-- Ensure you have a valid Google API key to initialize the AI agent.
-- The coin data is cached for one hour to minimize API calls.
+
+- Market data is cached for 5 minutes to minimize API calls
+- The app supports the top 30 cryptocurrencies by market cap
+- For cryptocurrencies without sufficient data, the app provides estimated indicators
 
 ---
 
-Happy investing and enjoy exploring the market trends with the Escape the Matrix Agent!
+Built with Streamlit, Coinpaprika API, and Google Gemini AI
