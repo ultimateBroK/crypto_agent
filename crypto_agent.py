@@ -5,7 +5,6 @@ import re
 from datetime import datetime, timedelta
 import logging
 import traceback
-from functools import lru_cache
 from typing import Dict, Any, List, Optional, Tuple
 import requests
 import pandas as pd
@@ -14,12 +13,6 @@ from collections import Counter
 import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-import hmac
-import hashlib
-import urllib.parse
-import base64
-from io import StringIO
-import math
 
 # --- Setup logging ---
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
