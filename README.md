@@ -113,7 +113,23 @@ An advanced cryptocurrency analysis platform combining real-time market data fro
 ## 🧩 How It Works
 
 <div align="center">
-  <img src="https://mermaid.ink/img/pako:eNp1kc9OwzAMxl8l8nkkLj0jJkBiAk1I0-4hTdwS0fxRnW4I8e4kLV0RAie_3-eP2M5BW-9AIlrwzkHkA5uBVeeBzRptTZrbGIOq0r352iRnZzVwYTpkqsk0ZdtUvYb0-W0Rn_ciU_ySYbOokkjO2jI-tAtlCcMVE7GHwCfEPqTqMQY-LlQJyUy5kknWnOysHPXLT5DBVKMN4W6YG_W0aRdpGUZpuiWRLj_HYrGN9mqno7dUCLxs7Rk4Kri1usWw4qPuYBgwo_w91CM8Fto0Y9CcasSsl8pBgfkcRcGeT7SHFk3o0hCwRgGduKd_zF9qPIKJ1jarSP8T8XnoP61fZPDDQjQOJMwUZVxQsQEpjNJzRcuqnG03Mmfbgswrod6TK4q8KGdZxcoyZ5IzdcgFE-lhJnJe5VVVid0fyPagYA?type=png" alt="Architecture Diagram" width="80%">
+  <pre>
+  ┌───────────────────┐     ┌─────────────────────┐     ┌────────────────────┐     ┌─────────────────┐
+  │                   │     │                     │     │                    │     │                 │
+  │   Binance API     │────▶│   Data Processing   │────▶│  Technical Analysis│────▶│   Google Gemini │
+  │   Market Data     │     │   & Caching Layer   │     │  Engine            │     │   AI Model      │
+  │                   │     │                     │     │                    │     │                 │
+  └───────────────────┘     └─────────────────────┘     └────────────────────┘     └────────┬────────┘
+                                                                                            │
+                                                                                            │
+                                                                                            ▼
+  ┌───────────────────┐     ┌─────────────────────┐     ┌────────────────────┐     ┌─────────────────┐
+  │                   │     │                     │     │                    │     │                 │
+  │   User Interface  │◀────│ Trading Strategies  │◀────│ Price Targets &    │◀────│   Analysis      │
+  │   Dashboard       │     │ & Recommendations   │     │ Support/Resistance │     │   Generator     │
+  │                   │     │                     │     │                    │     │                 │
+  └───────────────────┘     └─────────────────────┘     └────────────────────┘     └─────────────────┘
+  </pre>
 </div>
 
 ### Data Flow & Processing
