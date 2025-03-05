@@ -242,10 +242,32 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
+## ⭐ Star History
+
+<div align="center">
+
+[![Star History Chart](https://api.star-history.com/svg?repos=ultimatebrok/crypto_agent&type=Date)](https://star-history.com/#ultimatebrok/crypto_agent&Date)
+
+</div>
+
 ## ⚠️ Disclaimer
 
-<div style="background-color: #ffffcc; padding: 10px; border-radius: 5px; border-left: 5px solid #ffcc00;">
-The analysis and recommendations provided by this application are for informational purposes only and should not be considered financial advice. Always conduct your own research before making investment decisions.
+<div align="center">
+  <table>
+    <tr>
+      <td style="background-color: #fff3cd; padding: 15px; border-radius: 8px; border-left: 5px solid #ffc107;">
+        <h4>⚠️ Investment Risk Warning</h4>
+        <ul>
+          <li>This application provides analysis for informational purposes only and does not constitute financial advice.</li>
+          <li>Cryptocurrency investments are highly volatile and speculative. You may lose your entire investment.</li>
+          <li>Past performance is not indicative of future results.</li>
+          <li>Technical indicators and AI predictions cannot guarantee profitable trades.</li>
+          <li>Always conduct your own research and consider consulting with a licensed financial advisor before making investment decisions.</li>
+          <li>The developers of this application are not responsible for any financial losses incurred.</li>
+        </ul>
+      </td>
+    </tr>
+  </table>
 </div>
 
 ## 📜 License
