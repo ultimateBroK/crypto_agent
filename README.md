@@ -3,6 +3,7 @@
 <div align="center">
   
 ![Crypto Dashboard Banner](https://img.shields.io/badge/Crypto-Analysis-blueviolet?style=for-the-badge&logo=bitcoin)
+
 [![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
 [![Streamlit](https://img.shields.io/badge/Powered%20by-Streamlit-FF4B4B.svg?style=flat&logo=streamlit&logoColor=white)](https://streamlit.io)
 [![Google Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?style=flat&logo=google&logoColor=white)](https://ai.google.dev)
