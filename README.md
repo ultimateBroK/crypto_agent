@@ -8,6 +8,7 @@ An advanced cryptocurrency analysis platform combining real-time market data fro
 
 - **🧠 AI-Powered Analysis:** Harnesses Google Gemini models to generate sophisticated investment recommendations with detailed rationales
 - **📊 Interactive Charts:** Professional-grade candlestick charts with technical indicators and support/resistance visualization
+- **📈 Volume Analysis:** Advanced volume trend analysis with spike detection and pattern recognition
 - **📈 Advanced Technical Analysis:** Real-time RSI, MACD, and EMA crossover indicators derived from actual Binance market data
 - **⚖️ Trading Strategies:** Actionable trading strategies with risk-reward ratios and confidence levels
 - **🌡️ Market Sentiment:** Dynamic assessment of market mood with visual indicators based on price movement and volume analysis
@@ -50,7 +51,7 @@ Will update soon!
 
 4. **Run the App:**
    ```bash
-   streamlit run crypto_agent.py
+   streamlit run app.py
    ```
 
 5. **Access the Dashboard:**
@@ -70,25 +71,25 @@ No API key is required for accessing Binance public API endpoints.
 ## 🧩 How It Works
 
 1. **Market Data Acquisition:**
-   - Real-time cryptocurrency data is fetched from Binance API
+   - Real-time cryptocurrency data is fetched from Binance API (`src/data_processing/binance_api.py`)
    - Historical price data is retrieved for candlestick charts and technical analysis
-   - Price, volume, market cap, and change percentages are collected
+   - Price, volume, market cap, and change percentages are collected with intelligent caching (`src/data_processing/market_data.py`)
 
 2. **Technical Analysis:**
-   - Multiple technical indicators calculated including RSI, MACD, and EMA crossovers
+   - Multiple technical indicators calculated including RSI, MACD, and EMA crossovers (`src/analytics/technical_indicators.py`)
    - Signal strength is determined through a weighted combination of indicators
    - Market sentiment is derived from price action and volume patterns
 
 3. **AI Analysis Pipeline:**
-   - Technical data is formatted into a comprehensive prompt for the Gemini AI model
+   - Technical data is formatted into a comprehensive prompt for the Gemini AI model (`src/analytics/ai_analysis.py`)
    - Analysis is structured into recommendation, rationale, factors, outlook, and price targets
    - AI responses are enhanced for clarity and confidence
 
 4. **Advanced Visualization:**
-   - Interactive candlestick charts with multiple timeframe options
-   - Support and resistance levels plotted directly on charts
+   - Interactive candlestick charts with multiple timeframe options (`src/ui_components/charts.py`)
+   - Support and resistance levels plotted directly on charts (`src/ui_components/price_targets.py`)
    - Technical indicators displayed as separate panels for detailed analysis
-   - Trading strategies presented with clear risk-reward metrics
+   - Trading strategies presented with clear risk-reward metrics (`src/ui_components/trading_strategy.py`)
 
 ## 🔎 Supported Cryptocurrencies
 
@@ -119,6 +120,35 @@ The dashboard supports the top USDT trading pairs on Binance, including:
 - **Visualization:** Interactive Plotly charts with custom styling
 - **Market data caching:** 5-minute cache to optimize performance
 - **Programming:** Built with Python, Streamlit, Pandas, NumPy, and Plotly
+
+## 🏗️ Project Structure
+
+```
+├── app.py                  # Main application file
+├── requirements.txt        # Project dependencies
+├── README.md              # Project documentation
+├── CHANGELOG.md           # Version history and changes
+├── project_status.txt     # Current project status
+└── src/                   # Source code directory
+    ├── analytics/         # Analysis modules
+    │   ├── ai_analysis.py         # AI integration and analysis
+    │   └── technical_indicators.py # Technical indicator calculations
+    ├── data_processing/   # Data retrieval and processing
+    │   ├── binance_api.py         # Binance API integration
+    │   └── market_data.py         # Market data handling and caching
+    ├── ui_components/     # UI components and visualization
+    │   ├── analysis_display.py    # Analysis display components
+    │   ├── charts.py              # Chart visualization components
+    │   ├── market_summary.py      # Market summary components
+    │   ├── price_targets.py       # Price target visualization
+    │   ├── sidebar.py             # Sidebar components
+    │   ├── styles.py              # CSS styling and page configuration
+    │   └── trading_strategy.py    # Trading strategy components
+    └── utils/             # Utility functions
+        ├── constants.py           # Application constants
+        ├── formatting.py          # Data formatting utilities
+        └── logger.py              # Logging configuration
+```
 
 ## ⚠️ Disclaimer
 
