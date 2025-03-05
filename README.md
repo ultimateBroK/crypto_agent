@@ -252,10 +252,9 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ## ⚠️ Disclaimer
 
-<div align="center">
-  <table>
+<div align="left">
     <tr>
-      <td style="background-color: #fff3cd; padding: 15px; border-radius: 8px; border-left: 5px solid #ffc107;">
+      <td style="background-color: #fff3cd; align="center"; padding: 15px; border-radius: 8px; border-left: 5px solid #ffc107;">
         <h4>⚠️ Investment Risk Warning</h4>
         <ul>
           <li>This application provides analysis for informational purposes only and does not constitute financial advice.</li>
@@ -267,7 +266,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
         </ul>
       </td>
     </tr>
-  </table>
 </div>
 
 ## 📜 License
