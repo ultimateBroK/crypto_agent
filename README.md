@@ -1,26 +1,65 @@
 # 🚀 Crypto Analysis Pro Dashboard
 
+<div align="center">
+  
 ![Crypto Dashboard Banner](https://img.shields.io/badge/Crypto-Analysis-blueviolet?style=for-the-badge&logo=bitcoin)
+[![Python 3.8+](https://img.shields.io/badge/Python-3.8+-blue.svg?style=flat&logo=python&logoColor=white)](https://www.python.org)
+[![Streamlit](https://img.shields.io/badge/Powered%20by-Streamlit-FF4B4B.svg?style=flat&logo=streamlit&logoColor=white)](https://streamlit.io)
+[![Google Gemini](https://img.shields.io/badge/AI-Google%20Gemini-4285F4?style=flat&logo=google&logoColor=white)](https://ai.google.dev)
+[![Binance API](https://img.shields.io/badge/Data-Binance-F0B90B?style=flat&logo=binance&logoColor=black)](https://binance.com)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+</div>
 
 An advanced cryptocurrency analysis platform combining real-time market data from Binance with Google's Gemini AI to deliver professional-grade investment insights, technical analysis, and strategic trading recommendations.
 
 ## ✨ Features Spotlight
 
-- **🧠 AI-Powered Analysis:** Harnesses Google Gemini models to generate sophisticated investment recommendations with detailed rationales
-- **📊 Interactive Charts:** Professional-grade candlestick charts with technical indicators and support/resistance visualization
-- **📈 Volume Analysis:** Advanced volume trend analysis with spike detection and pattern recognition
-- **📈 Advanced Technical Analysis:** Real-time RSI, MACD, and EMA crossover indicators derived from actual Binance market data
-- **⚖️ Trading Strategies:** Actionable trading strategies with risk-reward ratios and confidence levels
-- **🌡️ Market Sentiment:** Dynamic assessment of market mood with visual indicators based on price movement and volume analysis
-- **🕒 Multi-Timeframe Analysis:** Analyze price action across different timeframes (1H, 4H, 1D, 1W, 1M)
-- **🎯 Price Target Visualization:** Support and resistance levels displayed on interactive charts with confidence metrics
-- **📱 Responsive UI:** Modern card-based interface with color-coded signals and visual progress indicators
-- **⚡ Smart Data Handling:** Intelligent caching system minimizes API calls while keeping data fresh
-- **🔍 Advanced Search:** Find cryptocurrencies by partial name or symbol with smart matching algorithm
+<table>
+  <tr>
+    <td width="50%">
+      <h3>🧠 AI-Powered Analysis</h3>
+      <p>Harnesses Google Gemini models to generate sophisticated investment recommendations with detailed rationales</p>
+    </td>
+    <td width="50%">
+      <h3>📊 Interactive Charts</h3>
+      <p>Professional-grade candlestick charts with technical indicators and support/resistance visualization</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>📈 Advanced Technical Analysis</h3>
+      <p>Real-time RSI, MACD, and EMA crossover indicators derived from actual Binance market data</p>
+    </td>
+    <td width="50%">
+      <h3>⚖️ Trading Strategies</h3>
+      <p>Actionable trading strategies with risk-reward ratios and confidence levels</p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>🌡️ Market Sentiment</h3>
+      <p>Dynamic assessment of market mood with visual indicators based on price movement and volume analysis</p>
+    </td>
+    <td width="50%">
+      <h3>🕒 Multi-Timeframe Analysis</h3>
+      <p>Analyze price action across different timeframes (1H, 4H, 1D, 1W, 1M)</p>
+    </td>
+  </tr>
+</table>
+
+**Additional Features:**
+- 🎯 **Price Target Visualization:** Support and resistance levels displayed with confidence metrics
+- 📱 **Responsive UI:** Modern card-based interface with color-coded signals and visual indicators
+- ⚡ **Smart Data Handling:** Intelligent caching system minimizes API calls while keeping data fresh
+- 🔍 **Advanced Search:** Find cryptocurrencies by partial name or symbol with smart matching
+- 📈 **Volume Analysis:** Advanced volume trend analysis with spike detection and pattern recognition
 
 ## 🖼️ Screenshots
 
-Will update soon!
+<div align="center">
+  <p><i>📸 Screenshots coming soon! 📸</i></p>
+</div>
 
 ## 🚀 Getting Started
 
@@ -30,7 +69,7 @@ Will update soon!
 - Google AI Studio API key
 - Internet connection for Binance market data
 
-### Installation
+### Quick Start Guide
 
 1. **Clone the Repository:**
    ```bash
@@ -38,7 +77,7 @@ Will update soon!
    cd crypto_agent
    ```
 
-2. **Create a Virtual Environment (Recommended):**
+2. **Create a Virtual Environment:**
    ```bash
    python -m venv venv
    source venv/bin/activate   # On Windows: venv\Scripts\activate
@@ -49,66 +88,90 @@ Will update soon!
    pip install -r requirements.txt
    ```
 
-4. **Run the App:**
+4. **Launch the Dashboard:**
    ```bash
    streamlit run app.py
    ```
 
-5. **Access the Dashboard:**
-   Open your browser and go to http://localhost:8501
+5. **Access the Application:**
+   Open your browser and navigate to http://localhost:8501
 
-## 🔑 API Keys
+### 🔑 Setting Up API Keys
 
-This application requires a Google API key to access Gemini AI models:
+<details>
+<summary>Click to expand instructions</summary>
 
+#### Google Gemini API Key:
 1. Visit [Google AI Studio](https://aistudio.google.com/app/apikey)
 2. Create or use an existing Google Cloud project
 3. Generate an API key
 4. Enter the key in the dashboard sidebar when prompted
 
-No API key is required for accessing Binance public API endpoints.
+> **Note**: No API key is required for accessing Binance public API endpoints.
+</details>
 
 ## 🧩 How It Works
 
-1. **Market Data Acquisition:**
-   - Real-time cryptocurrency data is fetched from Binance API (`src/data_processing/binance_api.py`)
+<div align="center">
+  <img src="https://mermaid.ink/img/pako:eNp1kc9OwzAMxl8l8nkkLj0jJkBiAk1I0-4hTdwS0fxRnW4I8e4kLV0RAie_3-eP2M5BW-9AIlrwzkHkA5uBVeeBzRptTZrbGIOq0r352iRnZzVwYTpkqsk0ZdtUvYb0-W0Rn_ciU_ySYbOokkjO2jI-tAtlCcMVE7GHwCfEPqTqMQY-LlQJyUy5kknWnOysHPXLT5DBVKMN4W6YG_W0aRdpGUZpuiWRLj_HYrGN9mqno7dUCLxs7Rk4Kri1usWw4qPuYBgwo_w91CM8Fto0Y9CcasSsl8pBgfkcRcGeT7SHFk3o0hCwRgGduKd_zF9qPIKJ1jarSP8T8XnoP61fZPDDQjQOJMwUZVxQsQEpjNJzRcuqnG03Mmfbgswrod6TK4q8KGdZxcoyZ5IzdcgFE-lhJnJe5VVVid0fyPagYA?type=png" alt="Architecture Diagram" width="80%">
+</div>
+
+### Data Flow & Processing
+
+1. **Market Data Acquisition**
+   - Real-time cryptocurrency data is fetched from Binance API
    - Historical price data is retrieved for candlestick charts and technical analysis
-   - Price, volume, market cap, and change percentages are collected with intelligent caching (`src/data_processing/market_data.py`)
+   - Intelligent caching minimizes API calls while ensuring data freshness
 
-2. **Technical Analysis:**
-   - Multiple technical indicators calculated including RSI, MACD, and EMA crossovers (`src/analytics/technical_indicators.py`)
-   - Signal strength is determined through a weighted combination of indicators
-   - Market sentiment is derived from price action and volume patterns
+2. **Technical Analysis Engine**
+   - Multiple technical indicators calculated including RSI, MACD, and EMA crossovers
+   - Signal strength determined through weighted combination of indicators
+   - Market sentiment derived from price action and volume patterns
 
-3. **AI Analysis Pipeline:**
-   - Technical data is formatted into a comprehensive prompt for the Gemini AI model (`src/analytics/ai_analysis.py`)
-   - Analysis is structured into recommendation, rationale, factors, outlook, and price targets
-   - AI responses are enhanced for clarity and confidence
+3. **AI Analysis Pipeline**
+   - Technical data formatted into comprehensive prompts for Gemini AI
+   - Analysis structured into recommendation, rationale, and price targets
+   - AI responses enhanced for clarity and confidence metrics
 
-4. **Advanced Visualization:**
-   - Interactive candlestick charts with multiple timeframe options (`src/ui_components/charts.py`)
-   - Support and resistance levels plotted directly on charts (`src/ui_components/price_targets.py`)
-   - Technical indicators displayed as separate panels for detailed analysis
-   - Trading strategies presented with clear risk-reward metrics (`src/ui_components/trading_strategy.py`)
+4. **Advanced Visualization Layer**
+   - Interactive candlestick charts with multiple timeframe options
+   - Support/resistance levels plotted directly on charts
+   - Trading strategies presented with clear risk-reward metrics
 
 ## 🔎 Supported Cryptocurrencies
 
-The dashboard supports the top USDT trading pairs on Binance, including:
-- Bitcoin (BTC)
-- Ethereum (ETH)
-- XRP
-- And many more!
+The dashboard supports all major USDT trading pairs on Binance, including:
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center"><img src="https://cryptologos.cc/logos/bitcoin-btc-logo.svg" width="20"/> Bitcoin (BTC)</td>
+      <td align="center"><img src="https://cryptologos.cc/logos/ethereum-eth-logo.svg" width="20"/> Ethereum (ETH)</td>
+      <td align="center"><img src="https://cryptologos.cc/logos/binance-coin-bnb-logo.svg" width="20"/> Binance Coin (BNB)</td>
+    </tr>
+    <tr>
+      <td align="center"><img src="https://cryptologos.cc/logos/xrp-xrp-logo.svg" width="20"/> XRP</td>
+      <td align="center"><img src="https://cryptologos.cc/logos/cardano-ada-logo.svg" width="20"/> Cardano (ADA)</td>
+      <td align="center"><img src="https://cryptologos.cc/logos/solana-sol-logo.svg" width="20"/> Solana (SOL)</td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center">And many more...</td>
+    </tr>
+  </table>
+</div>
 
 ## 🛠️ Advanced Features
 
-- **Multi-Model Fallback:** Automatically tries multiple Gemini models if the primary one is unavailable
+- **Multi-Model Fallback:** Automatically tries multiple Gemini models if primary is unavailable
 - **Bookmarkable Analysis:** URL parameters support direct linking to specific coins and timeframes
-- **Trading Strategy Generation:** Custom strategies based on current market conditions with entry/exit points
-- **Technical Signal Aggregation:** Weighted technical signals from multiple indicators for higher accuracy
+- **Trading Strategy Generation:** Custom strategies with entry/exit points based on market conditions
+- **Technical Signal Aggregation:** Weighted technical signals from multiple indicators
 - **Risk-Reward Analysis:** Calculated metrics for potential trades with confidence levels
-- **Smart Number Formatting:** Large numbers are displayed with appropriate K/M/B suffixes
 
 ## 📝 Technical Details
+
+<details>
+<summary>Click to expand technical specifications</summary>
 
 - **Data Source:** Binance API for real-time and historical market data
 - **AI Model:** Google Gemini 2.0 Pro with fallbacks to other versions
@@ -120,39 +183,57 @@ The dashboard supports the top USDT trading pairs on Binance, including:
 - **Visualization:** Interactive Plotly charts with custom styling
 - **Market data caching:** 5-minute cache to optimize performance
 - **Programming:** Built with Python, Streamlit, Pandas, NumPy, and Plotly
+</details>
 
 ## 🏗️ Project Structure
 
 ```
-├── app.py                  # Main application file
+crypto_agent/
+├── app.py                  # Main application entry point
 ├── requirements.txt        # Project dependencies
 ├── README.md              # Project documentation
 ├── CHANGELOG.md           # Version history and changes
 ├── project_status.txt     # Current project status
 └── src/                   # Source code directory
     ├── analytics/         # Analysis modules
-    │   ├── ai_analysis.py         # AI integration and analysis
-    │   └── technical_indicators.py # Technical indicator calculations
+    │   ├── ai_analysis.py         # AI integration
+    │   └── technical_indicators.py # Technical indicators
     ├── data_processing/   # Data retrieval and processing
-    │   ├── binance_api.py         # Binance API integration
-    │   └── market_data.py         # Market data handling and caching
-    ├── ui_components/     # UI components and visualization
-    │   ├── analysis_display.py    # Analysis display components
-    │   ├── charts.py              # Chart visualization components
-    │   ├── market_summary.py      # Market summary components
-    │   ├── price_targets.py       # Price target visualization
+    │   ├── binance_api.py         # Binance integration
+    │   └── market_data.py         # Data handling
+    ├── ui_components/     # UI components
+    │   ├── analysis_display.py    # Analysis display
+    │   ├── charts.py              # Chart visualization
+    │   ├── market_summary.py      # Market summary
+    │   ├── price_targets.py       # Price targets
     │   ├── sidebar.py             # Sidebar components
-    │   ├── styles.py              # CSS styling and page configuration
-    │   └── trading_strategy.py    # Trading strategy components
+    │   ├── styles.py              # CSS styling
+    │   └── trading_strategy.py    # Trading strategies
     └── utils/             # Utility functions
-        ├── constants.py           # Application constants
-        ├── formatting.py          # Data formatting utilities
+        ├── constants.py           # Constants
+        ├── formatting.py          # Formatting utilities
         └── logger.py              # Logging configuration
 ```
 
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
 ## ⚠️ Disclaimer
 
+<div style="background-color: #ffffcc; padding: 10px; border-radius: 5px; border-left: 5px solid #ffcc00;">
 The analysis and recommendations provided by this application are for informational purposes only and should not be considered financial advice. Always conduct your own research before making investment decisions.
+</div>
+
+## 📜 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
@@ -162,3 +243,9 @@ The analysis and recommendations provided by this application are for informatio
   <a href="https://binance.com/"><img src="https://img.shields.io/badge/Data-Binance-F0B90B?style=flat-square&logo=binance&logoColor=black" alt="Data: Binance"></a>
   <a href="https://ai.google.dev/"><img src="https://img.shields.io/badge/AI-Google%20Gemini-blue?style=flat-square&logo=google&logoColor=white" alt="AI: Google Gemini"></a>
 </p>
+
+<div align="center">
+  <a href="#"><img src="https://visitor-badge.laobi.icu/badge?page_id=crypto-analysis-pro-dashboard" alt="Visitors"></a>
+  <a href="https://github.com/ultimatebrok/crypto_agent/stargazers"><img src="https://img.shields.io/github/stars/ultimatebrok/crypto_agent" alt="Stars"></a>
+  <a href="https://github.com/ultimatebrok/crypto_agent/issues"><img src="https://img.shields.io/github/issues/ultimatebrok/crypto_agent" alt="Issues"></a>
+</div>
