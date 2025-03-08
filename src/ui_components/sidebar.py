@@ -57,13 +57,13 @@ def setup_sidebar(coins_list: List[Dict[str, str]]) -> Tuple[str, str]:
 
 def display_coin_metrics(stats: Dict[str, Any], tech_indicators: Dict[str, float]):
     """Display coin metrics in a dedicated container in the main area instead of sidebar."""
-    # Create a stylish container for technical metrics
+    # Create container with improved styling and fixed width
     st.markdown("""
-    <div style="position: relative; float: right; width: 350px; background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
-         border-radius: 0.75rem; padding: 1.5rem; margin: 0 0 1.5rem 1.5rem;
-         border: 1px solid rgba(148, 163, 184, 0.3); box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);">
-        <div style="display: flex; align-items: center; margin-bottom: 1.5rem;">
-            <h3 style="margin: 0; color: #60A5FA; font-size: 1.25rem;">Technical Metrics</h3>
+    <div style="position: relative; width: 320px; background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+         border-radius: 0.75rem; padding: 1rem; margin: 0 0 1rem 0;
+         border: 1px solid rgba(148, 163, 184, 0.2); box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);">
+        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+            <h3 style="margin: 0; color: #60A5FA; font-size: 1.125rem;">Technical Metrics</h3>
             <div class="tooltip" style="margin-left: 0.5rem;">
                 <span style="color: #60A5FA; cursor: help;">ℹ️</span>
                 <span class="tooltip-text">Key technical indicators for market analysis</span>
@@ -72,16 +72,19 @@ def display_coin_metrics(stats: Dict[str, Any], tech_indicators: Dict[str, float
     """, unsafe_allow_html=True)
     
     # RSI with improved styling
-    rsi = tech_indicators.get('rsi', 0)
+    rsi = tech_indicators.get('rsi', 50)  # Default to neutral value
     rsi_color = "#F59E0B"  # Default amber
     rsi_text = "Neutral"
     
-    if rsi >= 70:
-        rsi_color = "#EF4444"  # Red
-        rsi_text = "Overbought"
-    elif rsi <= 30:
-        rsi_color = "#10B981"  # Green
-        rsi_text = "Oversold"
+    try:
+        if rsi >= 70:
+            rsi_color = "#EF4444"  # Red
+            rsi_text = "Overbought"
+        elif rsi <= 30:
+            rsi_color = "#10B981"  # Green
+            rsi_text = "Oversold"
+    except Exception:
+        rsi = 50  # Fallback to neutral on error
     
     st.markdown(f"""
     <div style="background-color: #252525; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 0.75rem;">
@@ -99,8 +102,16 @@ def display_coin_metrics(stats: Dict[str, Any], tech_indicators: Dict[str, float
     macd_signal = tech_indicators.get('macd_signal', 0)
     macd_hist = macd - macd_signal
     
-    macd_color = "#10B981" if macd_hist > 0 else "#EF4444"
-    macd_text = "Bullish" if macd_hist > 0 else "Bearish"
+    try:
+        if macd > macd_signal:
+            macd_color = "#10B981"
+            macd_text = "Bullish"
+        else:
+            macd_color = "#EF4444"
+            macd_text = "Bearish"
+    except Exception:
+        macd_color = "#F59E0B"
+        macd_text = "Neutral"
     
     st.markdown(f"""
     <div style="background-color: #252525; padding: 0.75rem; border-radius: 0.5rem; margin-bottom: 0.75rem;">

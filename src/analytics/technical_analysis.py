@@ -60,113 +60,104 @@ def perform_technical_analysis(df: pd.DataFrame) -> Dict[str, float]:
     return indicators
 
 def get_technical_signal(indicators: Dict[str, float]) -> str:
-    """
-    Analyze technical indicators and return a trading signal.
-    Possible signals: "Strong Buy", "Buy", "Neutral", "Sell", "Strong Sell"
-    """
-    if not indicators:
-        return "Neutral"
-    
-    # Count bullish and bearish signals
-    bullish = 0
-    bearish = 0
-    total_signals = 0
-    
-    # Check RSI
-    if 'rsi' in indicators:
-        rsi = indicators['rsi']
-        if rsi < 30:
-            bullish += 2  # Oversold
-            total_signals += 2
-        elif rsi > 70:
-            bearish += 2  # Overbought
-            total_signals += 2
-        elif rsi < 45:
-            bullish += 1  # Leaning bullish
+    """Get overall technical signal with improved error handling."""
+    try:
+        bullish = 0
+        bearish = 0
+        total_signals = 0
+
+        # Validate input data
+        if not indicators or not isinstance(indicators, dict):
+            return "Neutral"
+
+        # Check RSI with safe access
+        rsi = indicators.get('rsi')
+        if rsi is not None:
+            if rsi > 70:
+                bearish += 1
+            elif rsi < 30:
+                bullish += 1
             total_signals += 1
-        elif rsi > 55:
-            bearish += 1  # Leaning bearish
-            total_signals += 1
-        else:
-            # Neutral zone
-            total_signals += 1
-    
-    # Check MACD
-    if 'macd' in indicators and 'macd_signal' in indicators:
-        macd = indicators['macd']
-        signal = indicators['macd_signal']
+
+        # Check MACD
+        if 'macd' in indicators and 'macd_signal' in indicators:
+            macd = indicators['macd']
+            signal = indicators['macd_signal']
+            
+            if macd > signal:
+                bullish += 1
+                if macd > 0 and signal > 0:
+                    bullish += 1  # Strong bullish if both above zero
+                total_signals += 2
+            else:
+                bearish += 1
+                if macd < 0 and signal < 0:
+                    bearish += 1  # Strong bearish if both below zero
+                total_signals += 2
         
-        if macd > signal:
-            bullish += 1
-            if macd > 0 and signal > 0:
-                bullish += 1  # Strong bullish if both above zero
-            total_signals += 2
-        else:
-            bearish += 1
-            if macd < 0 and signal < 0:
-                bearish += 1  # Strong bearish if both below zero
-            total_signals += 2
-    
-    # Check EMA crossovers
-    if 'ema50' in indicators and 'ema200' in indicators:
-        ema50 = indicators['ema50']
-        ema200 = indicators['ema200']
+        # Check EMA crossovers
+        if 'ema50' in indicators and 'ema200' in indicators:
+            ema50 = indicators['ema50']
+            ema200 = indicators['ema200']
+            
+            if ema50 > ema200:
+                bullish += 2  # Golden cross situation
+                total_signals += 2
+            else:
+                bearish += 2  # Death cross situation
+                total_signals += 2
         
-        if ema50 > ema200:
-            bullish += 2  # Golden cross situation
-            total_signals += 2
-        else:
-            bearish += 2  # Death cross situation
-            total_signals += 2
-    
-    # Check price vs EMAs
-    if 'price' in indicators and 'ema50' in indicators:
-        price = indicators['price']
-        ema50 = indicators['ema50']
-        
-        if price > ema50:
-            bullish += 1  # Price above short-term trend
-            total_signals += 1
-        else:
-            bearish += 1  # Price below short-term trend
-            total_signals += 1
-    
-    # Check Bollinger Bands
-    if 'bb_percentB' in indicators:
-        percent_b = indicators['bb_percentB']
-        
-        if percent_b < 0.2:
-            bullish += 1  # Near lower band - potential bounce
-            total_signals += 1
-        elif percent_b > 0.8:
-            bearish += 1  # Near upper band - potential reversal
-            total_signals += 1
-    
-    # Check momentum
-    if 'momentum_1w' in indicators:
-        momentum = indicators['momentum_1w']
-        if momentum is not None:
-            if momentum > 5:
-                bullish += 1  # Strong upward momentum
+        # Check price vs EMAs
+        if 'price' in indicators and 'ema50' in indicators:
+            price = indicators['price']
+            ema50 = indicators['ema50']
+            
+            if price > ema50:
+                bullish += 1  # Price above short-term trend
                 total_signals += 1
-            elif momentum < -5:
-                bearish += 1  # Strong downward momentum
+            else:
+                bearish += 1  # Price below short-term trend
                 total_signals += 1
-    
-    # Determine overall signal
-    if total_signals == 0:
+        
+        # Check Bollinger Bands
+        if 'bb_percentB' in indicators:
+            percent_b = indicators['bb_percentB']
+            
+            if percent_b < 0.2:
+                bullish += 1  # Near lower band - potential bounce
+                total_signals += 1
+            elif percent_b > 0.8:
+                bearish += 1  # Near upper band - potential reversal
+                total_signals += 1
+        
+        # Check momentum
+        if 'momentum_1w' in indicators:
+            momentum = indicators['momentum_1w']
+            if momentum is not None:
+                if momentum > 5:
+                    bullish += 1  # Strong upward momentum
+                    total_signals += 1
+                elif momentum < -5:
+                    bearish += 1  # Strong downward momentum
+                    total_signals += 1
+        
+        # Safe calculation of final signal
+        if total_signals == 0:
+            return "Neutral"
+
+        bullish_ratio = bullish / max(total_signals, 1)  # Prevent division by zero
+        bearish_ratio = bearish / max(total_signals, 1)
+
+        if bullish_ratio > 0.7:
+            return "Strong Buy"
+        elif bullish_ratio > 0.5:
+            return "Buy"
+        elif bearish_ratio > 0.7:
+            return "Strong Sell"
+        elif bearish_ratio > 0.5:
+            return "Sell"
         return "Neutral"
-    
-    bullish_ratio = bullish / total_signals
-    bearish_ratio = bearish / total_signals
-    
-    if bullish_ratio > 0.7:
-        return "Strong Buy"
-    elif bullish_ratio > 0.5:
-        return "Buy"
-    elif bearish_ratio > 0.7:
-        return "Strong Sell"
-    elif bearish_ratio > 0.5:
-        return "Sell"
-    else:
-        return "Neutral"
+
+    except Exception as e:
+        logger.error(f"Error in technical signal calculation: {str(e)}")
+        return "Neutral"  # Safe fallback

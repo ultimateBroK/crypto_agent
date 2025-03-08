@@ -930,6 +930,139 @@ def setup_page_style():
     .element-container {
         margin-bottom: 0.5rem !important;
     }
+
+    /* Improve container spacing */
+    .stApp {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+    
+    /* Fix sidebar width */
+    .css-1d391kg {
+        width: 320px !important;
+        max-width: 320px !important;
+    }
+    
+    /* Improve card layouts */
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    /* Enhanced metrics cards */
+    .metric-card {
+        background: rgba(30, 41, 59, 0.85);
+        backdrop-filter: blur(10px);
+        border-radius: 0.75rem;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        padding: 1rem;
+        height: 100%;
+        transition: transform 0.2s ease;
+    }
+    
+    .metric-card:hover {
+        transform: translateY(-2px);
+    }
+    
+    /* Improve text contrast */
+    .text-label {
+        color: #94A3B8 !important;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+    
+    .text-value {
+        color: #E5E7EB !important;
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+    
+    /* Better tooltips */
+    .tooltip .tooltip-text {
+        min-width: 200px;
+        max-width: 300px;
+        line-height: 1.4;
+    }
+
+    /* Cải thiện layout chính */
+    .main .block-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        gap: 1.5rem;
+        grid-template-columns: minmax(0, 1fr) 320px;
+    }
+
+    /* Fix cột bên phải */
+    .technical-metrics {
+        position: sticky;
+        top: 1rem;
+        height: fit-content;
+        width: 320px;
+    }
+
+    /* Cải thiện card layout */
+    .card-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1rem;
+        align-items: start;
+    }
+
+    /* Thêm padding và margin hợp lý */
+    .section {
+        margin-bottom: 1.5rem;
+        padding: 1rem;
+        background: rgba(30, 41, 59, 0.85);
+        border-radius: 0.75rem;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+    }
+
+    /* Căn chỉnh các elements */
+    .flex-container {
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+    }
+
+    .flex-column {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    /* Tối ưu khoảng cách */
+    .stMarkdown {
+        margin-bottom: 0.75rem !important;
+    }
+
+    /* Giảm padding của container */
+    .element-container {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
+    /* Fix sidebar width */
+    .css-1d391kg {
+        width: 320px !important;
+        padding: 1rem !important;
+    }
+
+    /* Cải thiện responsive */
+    @media screen and (max-width: 768px) {
+        .main .block-container {
+            grid-template-columns: 1fr;
+        }
+        
+        .technical-metrics {
+            position: static;
+            width: 100%;
+        }
+    }
     </style>
     """, unsafe_allow_html=True)
 
