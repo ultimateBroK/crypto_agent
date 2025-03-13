@@ -74,7 +74,7 @@ An advanced cryptocurrency analysis platform combining real-time market data fro
 
 1. **Clone the Repository:**
    ```bash
-   git clone https://github.com/yourusername/crypto_agent.git
+   git clone https://github.com/ultimateBroK/crypto_agent.git
    cd crypto_agent
    ```
 
