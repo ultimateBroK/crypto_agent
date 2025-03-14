@@ -14,6 +14,7 @@
 
 An advanced cryptocurrency analysis platform combining real-time market data from Binance with Google's Gemini AI to deliver professional-grade investment insights, technical analysis, and strategic trading recommendations.
 
+** IT'S COMPLETELY BUGGY, STILL TRYING TO FIX EVERYTHING **
 ## ✨ Features Spotlight
 
 <table>
