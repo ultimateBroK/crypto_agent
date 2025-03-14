@@ -1,4 +1,4 @@
-# 🚀 Crypto Analysis Pro Dashboard
+# 🚀 Crypto Analysis Pro Dashboard (COMPLETELY BUGGY, FIXING TIME)
 
 <div align="center">
   
@@ -14,7 +14,6 @@
 
 An advanced cryptocurrency analysis platform combining real-time market data from Binance with Google's Gemini AI to deliver professional-grade investment insights, technical analysis, and strategic trading recommendations.
 
-<div align="center"> COMPLETELY BUGGY, FIXING TIME </div>
 
 ## ✨ Features Spotlight
 
