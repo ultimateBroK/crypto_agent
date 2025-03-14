@@ -118,7 +118,7 @@ An advanced cryptocurrency analysis platform combining real-time market data fro
   <pre>
   ┌───────────────────┐     ┌─────────────────────┐     ┌────────────────────┐     ┌─────────────────┐
   │                   │     │                     │     │                    │     │                 │
-  │   Binance API     │────▶│   Data Processing   │────▶│  Technical Analysis│────▶│   Google Gemini │
+  │   Binance API     │───▶│   Data Processing   │───▶│  Technical Analysis│───▶│   Google Gemini │
   │   Market Data     │     │   & Caching Layer   │     │  Engine            │     │   AI Model      │
   │                   │     │                     │     │                    │     │                 │
   └───────────────────┘     └─────────────────────┘     └────────────────────┘     └────────┬────────┘
@@ -127,7 +127,7 @@ An advanced cryptocurrency analysis platform combining real-time market data fro
                                                                                             ▼
   ┌───────────────────┐     ┌─────────────────────┐     ┌────────────────────┐     ┌─────────────────┐
   │                   │     │                     │     │                    │     │                 │
-  │   User Interface  │◀────│ Trading Strategies  │◀────│ Price Targets &    │◀────│   Analysis      │
+  │   User Interface  │◀───│ Trading Strategies  │◀───│ Price Targets &    │◀───│   Analysis      │
   │   Dashboard       │     │ & Recommendations   │     │ Support/Resistance │     │   Generator     │
   │                   │     │                     │     │                    │     │                 │
   └───────────────────┘     └─────────────────────┘     └────────────────────┘     └─────────────────┘
